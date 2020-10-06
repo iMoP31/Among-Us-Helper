@@ -21,6 +21,82 @@ sus = []
 clear = []
 dead = []
 nouse = []
+score = []
+score.insert(0, int("0"))
+score.insert(1, int("0"))
+score.insert(2, int("0"))
+
+
+
+def editB():
+    wonL.lift()
+    lostL.lift()
+    minusW.lift()
+    minusL.lift()
+    plusW.lift()
+    plusL.lift()
+    backB.lift()
+    blackD.lower()
+    blueD.lower()
+    brownD.lower()
+    cyanD.lower()
+    greenD.lower()
+    limeD.lower()
+    orangeD.lower()
+    pinkD.lower()
+    purpleD.lower()
+    redD.lower()
+    whiteD.lower()
+    yellowD.lower()
+    suspectREM.lower()
+    suspectADD.lower()
+    clearedADD.lower()
+    clearedREM.lower()
+    killedADD.lower()
+    killedREM.lower()
+    storeE.lower()
+    entrye.lower()
+    suspects.lower()
+    infoB.lower()
+    editO.lower()
+    scoreL.lower()
+    resetS.lift()
+
+def wonAdd():
+    global score
+    global won
+    score.insert(1, int(score[1]) + 1)
+    wonL.config(text= "W: " + str(score[1]))
+    scoreL.config(text= "W: " + str(score[1]) + " L: " + str(score[2]))
+
+def wonRem():
+    global score
+    global won
+    if score[1] == 0:
+        pass
+    else:
+        score.insert(1, int(score[1]) - 1)
+        wonL.config(text= "W: " + str(score[1]))
+        scoreL.config(text= "W: " + str(score[1]) + " L: " + str(score[2]))
+
+def lostAdd():
+    global score
+    global lost
+    score.insert(2, int(score[2]) + 1)
+    lostL.config(text= "L: " + str(score[2]))
+    scoreL.config(text= "W: " + str(score[1]) + " L: " + str(score[2]))
+
+def lostRem():
+    global score
+    global lost
+    if score[2] == 0:
+        pass
+    else:
+        score.insert(2, int(score[2]) - 1)
+        lostL.config(text= "L: " + str(score[2]))
+        scoreL.config(text= "W: " + str(score[1]) + " L: " + str(score[2]))
+    
+                
 
 
 def clearInfo():
@@ -108,8 +184,15 @@ def info():
     backB.lift()
     nouseADD.lower()
     nouseREM.lower()
+    editO.lower()
+    scoreL.lower()
+    minusL.lower()
+    minusW.lower()
+    plusW.lower()
+    plusL.lower()
 
 def back():
+    global score
     b.lower()
     lowerMenu()
     blackD.lift()
@@ -126,6 +209,16 @@ def back():
     yellowD.lift()
     backB.lower()
     resetB.lift()
+    editO.lift()
+    scoreL.lift()
+    lostL.lower()
+    wonL.lower()
+    scoreL.config(text= "W: " + str(score[1]) + " L: " + str(score[2]))
+    minusL.lower()
+    minusW.lower()
+    plusW.lower()
+    plusL.lower()
+    resetS.lower()
 
 
     
@@ -146,7 +239,7 @@ def killedAdd():
     global sus
     global dead
     
-    globals()[target].insert(2, "dead")
+    globals()[target].insert(3, "dead")
 
     killedADD.lower()
     killedREM.lift()
@@ -182,7 +275,9 @@ def lowerMenu():
     entrye.lower()
     suspects.lift()
     resetB.lift()
-
+    editO.lift()
+    scoreL.lift()
+    
 def openMenu():
     susB()
     clearB()
@@ -193,6 +288,8 @@ def openMenu():
     suspects.lower()
     resetB.lower()
     nouseB()
+    editO.lower()
+    scoreL.lower()
     
 def susAdd():
     global sus
@@ -237,7 +334,8 @@ def clearB():
         clearedADD.lift()
         
 def nouseB():
-    global sus
+    global target
+    global nouse
     if target in nouse:
         nouseREM.lift()
     else:
@@ -275,8 +373,6 @@ def clearRem():
 def nouseAdd():
     global nouse
     global target
-    
-    globals()[target].insert(2, "nouse")
     nouseADD.lower()
     nouseREM.lift()
     if target in nouse:
@@ -288,14 +384,55 @@ def nouseAdd():
 def nouseRem():
     global nouse
     global target
-    globals()[target].remove("nouse")
     nouseADD.lift()
     nouseREM.lower()
     if target in nouse:
         nouse.remove(target)
 
+def resetScore():
+    global score
+    score.clear()
+    score.insert(0, int("0"))
+    score.insert(1, int("0"))
+    score.insert(2, int("0"))
+    wonL.config(text= "W: " + str(score[1]))
+    lostL.config(text= "L: " + str(score[2]))
+    scoreL.config(text= "W: " + str(score[1]) + " L: " + str(score[2]))
 
 a = 8
+
+scoreL =tk.Label(root, text= "W: 0 - L: 0", anchor="n", wraplength=110 ,bg='#141414', fg='#FFFFFF', justify='left',font=("Arial", 8))
+canvas1.create_window(40, 345, window=scoreL)
+
+
+wonL =tk.Label(root, text= "W:" + str(score[1]), anchor="n", wraplength=110 ,bg='#141414', fg='#FFFFFF', justify='left',font=("Arial", 12))
+canvas1.create_window(30, 100, window=wonL)
+wonL.lower()
+
+lostL =tk.Label(root, text= "L:" + str(score[2]), anchor="n", wraplength=110 ,bg='#141414', fg='#FFFFFF', justify='left',font=("Arial", 12))
+canvas1.create_window(30, 200, window=lostL)
+lostL.lower()
+
+plusW = tk.Button(text='+', command=wonAdd, width= 2)
+canvas1.create_window(70, 100, window=plusW)
+plusW.lower()
+
+plusL = tk.Button(text='+', command=lostAdd, width= 2)
+canvas1.create_window(70, 200, window=plusL)
+plusL.lower()
+
+minusW = tk.Button(text='-', command=wonRem, width= 2)
+canvas1.create_window(100, 100, window=minusW)
+minusW.lower()
+
+minusL = tk.Button(text='-', command=lostRem, width= 2)
+canvas1.create_window(100, 200, window=minusL)
+minusL.lower()
+
+
+editO = tk.Button(text='edit', command=editB)
+canvas1.create_window(95, 345, window=editO)
+
 
 nouseREM = tk.Button(text='Not In Use', bg='#FF0000', command=nouseRem, width=a)
 nouseADD = tk.Button(text='In Use', command=nouseAdd, width=a, bg='#00FF00')
@@ -337,6 +474,10 @@ backB.lower()
 resetB = tk.Button(text='RESET', bg='#FF0000', command=clearInfo, width=a)
 canvas1.create_window(40, 380, window=resetB)
 
+resetS = tk.Button(text='RESET', bg='#FF0000', command=resetScore, width=a)
+canvas1.create_window(40, 30, window=resetS)
+resetS.lower()
+
 killedREM = tk.Button(text='Dead', bg='#FF0000', command=killedRem, width=a)
 killedADD = tk.Button(text='Dead', command=killedAdd, width=a)
 canvas1.create_window(40, 275, window=killedADD)
@@ -363,7 +504,9 @@ def blackS():
     yellowD.lift()
     blackS.lower()
     lowerMenu()
-
+    if target not in nouse:
+        if blackD.cget("bg") == "#000000":
+            blackD.config(bg="SystemButtonFace")
     if "sus" in black:
         blackD.config(bg="#FFA500")
     elif "sus" not in black:
@@ -381,9 +524,7 @@ def blackS():
             blackD.config(bg="SystemButtonFace")
     if target in nouse:
         blackD.config(bg="#000000")
-    elif target not in nouse:
-        if blackD.cget("bg") == "#000000":
-            blackD.config(bg="SystemButtonFace")
+    
     
 
     
@@ -435,6 +576,9 @@ def blueS():
     yellowD.lift()
     blueS.lower()
     lowerMenu()
+    if target not in nouse:
+        if blueD.cget("bg") == "#000000":
+            blueD.config(bg="SystemButtonFace")
     if "sus" in blue:
         blueD.config(bg="#FFA500")
     elif "sus" not in blue:
@@ -452,9 +596,7 @@ def blueS():
             blueD.config(bg="SystemButtonFace")
     if target in nouse:
         blueD.config(bg="#000000")
-    elif target not in nouse:
-        if blueD.cget("bg") == "#000000":
-            blueD.config(bg="SystemButtonFace")
+    
     
 def blueD():
     blueS.lift()
@@ -503,6 +645,9 @@ def brownS():
     yellowD.lift()
     brownS.lower()
     lowerMenu()
+    if target not in nouse:
+        if brownD.cget("bg") == "#000000":
+            brownD.config(bg="SystemButtonFace")
     if "sus" in brown:
         brownD.config(bg="#FFA500")
     elif "sus" not in brown:
@@ -520,9 +665,7 @@ def brownS():
             brownD.config(bg="SystemButtonFace")
     if target in nouse:
         brownD.config(bg="#000000")
-    elif target not in nouse:
-        if brownD.cget("bg") == "#000000":
-            brownD.config(bg="SystemButtonFace")
+    
     
 def brownD():
     brownS.lift()
@@ -571,6 +714,9 @@ def cyanS():
     yellowD.lift()
     cyanS.lower()
     lowerMenu()
+    if target not in nouse:
+        if cyanD.cget("bg") == "#000000":
+            cyanD.config(bg="SystemButtonFace")
     if "sus" in cyan:
         cyanD.config(bg="#FFA500")
     elif "sus" not in cyan:
@@ -588,10 +734,7 @@ def cyanS():
             cyanD.config(bg="SystemButtonFace")
     if target in nouse:
         cyanD.config(bg="#000000")
-    elif target not in nouse:
-        if cyanD.cget("bg") == "#000000":
-            cyanD.config(bg="SystemButtonFace")
-
+    
 def cyanD():
     cyanS.lift()
     blackD.lower()
@@ -638,6 +781,9 @@ def greenS():
     yellowD.lift()
     greenS.lower()
     lowerMenu()
+    if target not in nouse:
+        if greenD.cget("bg") == "#000000":
+            greenD.config(bg="SystemButtonFace")
     if "sus" in green:
         greenD.config(bg="#FFA500")
     elif "sus" not in green:
@@ -655,9 +801,7 @@ def greenS():
             greenD.config(bg="SystemButtonFace")
     if target in nouse:
         greenD.config(bg="#000000")
-    elif target not in nouse:
-        if greenD.cget("bg") == "#000000":
-            greenD.config(bg="SystemButtonFace")    
+        
 def greenD():
     greenS.lift()
     blackD.lower()
@@ -705,6 +849,9 @@ def limeS():
     yellowD.lift()
     limeS.lower()
     lowerMenu()
+    if target not in nouse:
+        if limeD.cget("bg") == "#000000":
+            limeD.config(bg="SystemButtonFace")
     if "sus" in lime:
         limeD.config(bg="#FFA500")
     elif "sus" not in lime:
@@ -722,9 +869,7 @@ def limeS():
             limeD.config(bg="SystemButtonFace")
     if target in nouse:
         limeD.config(bg="#000000")
-    elif target not in nouse:
-        if limeD.cget("bg") == "#000000":
-            limeD.config(bg="SystemButtonFace")
+    
     
 def limeD():
     limeS.lift()
@@ -773,6 +918,9 @@ def orangeS():
     yellowD.lift()
     orangeS.lower()
     lowerMenu()
+    if target not in nouse:
+        if orangeD.cget("bg") == "#000000":
+            orangeD.config(bg="SystemButtonFace")
     if "sus" in orange:
         orangeD.config(bg="#FFA500")
     elif "sus" not in orange:
@@ -790,9 +938,7 @@ def orangeS():
             orangeD.config(bg="SystemButtonFace")
     if target in nouse:
         orangeD.config(bg="#000000")
-    elif target not in nouse:
-        if orangeD.cget("bg") == "#000000":
-            orangeD.config(bg="SystemButtonFace")
+    
     
 def orangeD():
     orangeS.lift()
@@ -840,6 +986,9 @@ def pinkS():
     yellowD.lift()
     pinkS.lower()
     lowerMenu()
+    if target not in nouse:
+        if pinkD.cget("bg") == "#000000":
+            pinkD.config(bg="SystemButtonFace")
     if "sus" in pink:
         pinkD.config(bg="#FFA500")
     elif "sus" not in pink:
@@ -857,9 +1006,7 @@ def pinkS():
             pinkD.config(bg="SystemButtonFace")
     if target in nouse:
         pinkD.config(bg="#000000")
-    elif target not in nouse:
-        if pinkD.cget("bg") == "#000000":
-            pinkD.config(bg="SystemButtonFace")
+    
 
     
 def pinkD():
@@ -909,6 +1056,9 @@ def purpleS():
     yellowD.lift()
     purpleS.lower()
     lowerMenu()
+    if target not in nouse:
+        if purpleD.cget("bg") == "#000000":
+            purpleD.config(bg="SystemButtonFace")
     if "sus" in purple:
         purpleD.config(bg="#FFA500")
     elif "sus" not in purple:
@@ -926,9 +1076,7 @@ def purpleS():
             purpleD.config(bg="SystemButtonFace")
     if target in nouse:
         purpleD.config(bg="#000000")
-    elif target not in nouse:
-        if purpleD.cget("bg") == "#000000":
-            purpleD.config(bg="SystemButtonFace")
+    
     
     
 def purpleD():
@@ -978,6 +1126,9 @@ def redS():
     yellowD.lift()
     redS.lower()
     lowerMenu()
+    if target not in nouse:
+        if redD.cget("bg") == "#000000":
+            redD.config(bg="SystemButtonFace")
     if "sus" in red:
         redD.config(bg="#FFA500")
     elif "sus" not in red:
@@ -995,9 +1146,7 @@ def redS():
             redD.config(bg="SystemButtonFace")
     if target in nouse:
         redD.config(bg="#000000")
-    elif target not in nouse:
-        if redD.cget("bg") == "#000000":
-            redD.config(bg="SystemButtonFace")
+    
     
 def redD():
     redS.lift()
@@ -1045,6 +1194,9 @@ def whiteS():
     yellowD.lift()
     whiteS.lower()
     lowerMenu()
+    if target not in nouse:
+        if whiteD.cget("bg") == "#000000":
+            whiteD.config(bg="SystemButtonFace")
     if "sus" in white:
         whiteD.config(bg="#FFA500")
     elif "sus" not in white:
@@ -1062,9 +1214,7 @@ def whiteS():
             whiteD.config(bg="SystemButtonFace")
     if target in nouse:
         whiteD.config(bg="#000000")
-    elif target not in nouse:
-        if whiteD.cget("bg") == "#000000":
-            whiteD.config(bg="SystemButtonFace")
+    
     
 def whiteD():
     whiteS.lift()
@@ -1113,6 +1263,9 @@ def yellowS():
     yellowD.lift()
     yellowS.lower()
     lowerMenu()
+    if target not in nouse:
+        if yellowD.cget("bg") == "#000000":
+            yellowD.config(bg="SystemButtonFace")
     if "sus" in yellow:
         yellowD.config(bg="#FFA500")
     elif "sus" not in yellow:
@@ -1130,9 +1283,7 @@ def yellowS():
             yellowD.config(bg="SystemButtonFace")
     if target in nouse:
         yellowD.config(bg="#000000")
-    elif target not in nouse:
-        if yellowD.cget("bg") == "#000000":
-            yellowD.config(bg="SystemButtonFace")
+    
     
 def yellowD():
     yellowS.lift()
