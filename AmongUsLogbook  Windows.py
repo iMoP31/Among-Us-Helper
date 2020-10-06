@@ -556,7 +556,7 @@ def blackD():
     target = 'black'
     openMenu()
    
-blackI = ImageTk.PhotoImage(Image.open('black.png'))
+blackI = ImageTk.PhotoImage(Image.open('Resources/black.png'))
 blackS = tk.Button(image=blackI, bg='#FF0000', command=blackS)
 blackD = tk.Button(image=blackI, command=blackD)
 canvas1.create_window(20, 30, window=blackS)
@@ -625,7 +625,7 @@ def blueD():
     target = 'blue'
     openMenu()
     
-blueI = ImageTk.PhotoImage(Image.open('blue.png'))
+blueI = ImageTk.PhotoImage(Image.open('Resources/blue.png'))
 blueS = tk.Button(image=blueI, bg='#FF0000', command=blueS)
 blueD = tk.Button(image=blueI, command=blueD)
 canvas1.create_window(60, 30, window=blueS)
@@ -694,7 +694,7 @@ def brownD():
     target = 'brown'
     openMenu()
 
-brownI = ImageTk.PhotoImage(Image.open('brown.png'))
+brownI = ImageTk.PhotoImage(Image.open('Resources/brown.png'))
 brownS = tk.Button(image=brownI, bg='#FF0000', command=brownS)
 brownD = tk.Button(image=brownI, command=brownD)
 canvas1.create_window(100, 30, window=brownS)
@@ -762,7 +762,7 @@ def cyanD():
     target = 'cyan'
     openMenu()
     
-cyanI = ImageTk.PhotoImage(Image.open('cyan.png'))
+cyanI = ImageTk.PhotoImage(Image.open('Resources/cyan.png'))
 cyanS = tk.Button(image=cyanI, bg='#FF0000', command=cyanS)
 cyanD = tk.Button(image=cyanI, command=cyanD)
 canvas1.create_window(20, 75, window=cyanS)
@@ -829,7 +829,7 @@ def greenD():
     target = 'green'
     openMenu()
     
-greenI = ImageTk.PhotoImage(Image.open('green.png'))
+greenI = ImageTk.PhotoImage(Image.open('Resources/green.png'))
 greenS = tk.Button(image=greenI, bg='#FF0000', command=greenS)
 greenD = tk.Button(image=greenI, command=greenD)
 canvas1.create_window(60, 75, window=greenS)
@@ -898,7 +898,7 @@ def limeD():
     target = 'lime'
     openMenu()
 
-limeI = ImageTk.PhotoImage(Image.open('lime.png'))
+limeI = ImageTk.PhotoImage(Image.open('Resources/lime.png'))
 limeS = tk.Button(image=limeI, bg='#FF0000', command=limeS)
 limeD = tk.Button(image=limeI, command=limeD)
 canvas1.create_window(100, 75, window=limeS)
@@ -967,7 +967,7 @@ def orangeD():
     target = 'orange'
     openMenu()
  
-orangeI = ImageTk.PhotoImage(Image.open('orange.png'))
+orangeI = ImageTk.PhotoImage(Image.open('Resources/orange.png'))
 orangeS = tk.Button(image=orangeI, bg='#FF0000', command=orangeS)
 orangeD = tk.Button(image=orangeI, command=orangeD)
 canvas1.create_window(20, 120, window=orangeS)
@@ -1036,7 +1036,7 @@ def pinkD():
     target = 'pink'
     openMenu()
     
-pinkI = ImageTk.PhotoImage(Image.open('pink.png'))
+pinkI = ImageTk.PhotoImage(Image.open('Resources/pink.png'))
 pinkS = tk.Button(image=pinkI, bg='#FF0000', command=pinkS)
 pinkD = tk.Button(image=pinkI, command=pinkD)
 canvas1.create_window(60, 120, window=pinkS)
@@ -1106,7 +1106,7 @@ def purpleD():
     target = 'purple'
     openMenu()
     
-purpleI = ImageTk.PhotoImage(Image.open('purple.png'))
+purpleI = ImageTk.PhotoImage(Image.open('Resources/purple.png'))
 purpleS = tk.Button(image=purpleI, bg='#FF0000', command=purpleS)
 purpleD = tk.Button(image=purpleI, command=purpleD)
 canvas1.create_window(100, 120, window=purpleS)
@@ -1175,7 +1175,7 @@ def redD():
     target = 'red'
     openMenu()
 
-redI = ImageTk.PhotoImage(Image.open('red.png'))
+redI = ImageTk.PhotoImage(Image.open('Resources/red.png'))
 redS = tk.Button(image=redI, bg='#FF0000', command=redS)
 redD = tk.Button(image=redI, command=redD)
 canvas1.create_window(20, 165, window=redS)
@@ -1243,7 +1243,7 @@ def whiteD():
     target = 'white'
     openMenu()
     
-whiteI = ImageTk.PhotoImage(Image.open('white.png'))
+whiteI = ImageTk.PhotoImage(Image.open('Resources/white.png'))
 whiteS = tk.Button(image=whiteI, bg='#FF0000', command=whiteS)
 whiteD = tk.Button(image=whiteI, command=whiteD)
 canvas1.create_window(60, 165, window=whiteS)
@@ -1312,7 +1312,7 @@ def yellowD():
     target = 'yellow'
     openMenu()
  
-yellowI = ImageTk.PhotoImage(Image.open('yellow.png'))
+yellowI = ImageTk.PhotoImage(Image.open('Resources/yellow.png'))
 yellowS = tk.Button(image=yellowI, bg='#FF0000', command=yellowS)
 yellowD = tk.Button(image=yellowI, command=yellowD)
 canvas1.create_window(100, 165, window=yellowS)
