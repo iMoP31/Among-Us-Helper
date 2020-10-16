@@ -1,5 +1,7 @@
 import tkinter as tk
 from PIL import Image, ImageTk
+import ctypes
+ctypes.windll.user32.ShowWindow( ctypes.windll.kernel32.GetConsoleWindow(), 6 )
 root= tk.Tk()
 canvas1 = tk.Canvas(root, width = 115, height = 400,  relief = 'raised',bg='#141414')
 canvas1.pack()
